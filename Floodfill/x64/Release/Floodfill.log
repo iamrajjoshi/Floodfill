@@ -1,0 +1,4 @@
+﻿  floodfill.cpp
+floodfill.obj : error LNK2001: unresolved external symbol "void __cdecl cv::imshow(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,class cv::_InputArray const &)" (?imshow@cv@@YAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBV_InputArray@1@@Z)
+floodfill.obj : error LNK2001: unresolved external symbol "void __cdecl cv::line(class cv::_InputOutputArray const &,class cv::Point_<int>,class cv::Point_<int>,class cv::Scalar_<double> const &,int,int,int)" (?line@cv@@YAXAEBV_InputOutputArray@1@V?$Point_@H@1@1AEBV?$Scalar_@N@1@HHH@Z)
+C:\Users\geeky\MEGA\Workspace\Visual Studio 2019\Floodfill\x64\Release\Floodfill.exe : fatal error LNK1120: 2 unresolved externals
