@@ -42,13 +42,11 @@ bool checkValid(Point p, int b, int g, int r) {
 	if (!(p.x > 0 && p.x < WINDOW_SIZE && p.y > 0 && p.y < WINDOW_SIZE))
 		return false;
 
-	else {
-		auto color = img.at<Vec3b>(p);
-		if (!(color == Vec3b(b, g, r)) && !(color == Vec3b(255, 255, 255)))
-			return true;
-		else
-			return false;
-	}
+	auto color = img.at<Vec3b>(p);
+	if (!(color == Vec3b(b, g, r)) && !(color == Vec3b(255, 255, 255)))
+		return true;
+	else
+		return false;
 }
 
 void myFloodFill(Point start) {
@@ -60,26 +58,30 @@ void myFloodFill(Point start) {
 	queue<Point> q;
 	q.push(start);
 
-	q.push(start);
 	while (!q.empty()) {
 		Point p = q.front();
 		q.pop();
-
-		if (!checkValid(p, b, g, r))
-			continue;
-		else {
-			img.at<Vec3b>(p) = Vec3b(b, g, r);
-			if (checkValid(Point(p.x + 1, p.y), b, g, r))
-				q.push(Point(p.x + 1, p.y));
-			if (checkValid(Point(p.x - 1, p.y), b, g, r))
-				q.push(Point(p.x - 1, p.y));
-			if (checkValid(Point(p.x, p.y + 1), b, g, r))
-				q.push(Point(p.x, p.y + 1));
-			if (checkValid(Point(p.x, p.y - 1), b, g, r))
-				q.push(Point(p.x, p.y - 1));
-			//imshow(imgName, img);
-			//waitKey(1);
+		if (checkValid(Point(p.x + 1, p.y), b, g, r)) {
+			img.at<Vec3b>(Point(p.x + 1, p.y)) = Vec3b(b, g, r);
+			q.push(Point(p.x + 1, p.y));
 		}
+
+		if (checkValid(Point(p.x - 1, p.y), b, g, r)) {
+			img.at<Vec3b>(Point(p.x + 1, p.y)) = Vec3b(b, g, r);
+			q.push(Point(p.x - 1, p.y));
+		}
+			
+		if (checkValid(Point(p.x, p.y + 1), b, g, r)) {
+			img.at<Vec3b>(Point(p.x, p.y + 1)) = Vec3b(b, g, r);
+			q.push(Point(p.x, p.y + 1));
+		}	
+		if (checkValid(Point(p.x, p.y - 1), b, g, r)) {
+			img.at<Vec3b>(Point(p.x, p.y - 1)) = Vec3b(b, g, r);
+			q.push(Point(p.x, p.y - 1));
+		}
+			
+		//imshow(imgName, img);
+		//waitKey(1);
 	}
 }
 
